@@ -862,19 +862,19 @@ window.printReceipt = function(customerName, amount, date, notes, remainingDebt)
     printWindow.document.write('<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">');
     printWindow.document.write('<style>');
     printWindow.document.write(`
-        @page { size: 80mm 110mm; margin: 0; }
+        @page { size: 80mm 130mm; margin: 0; }
         body { 
             font-family: 'Tajawal', sans-serif; 
             margin: 0; 
-            padding: 5px;
+            padding: 10mm 5px;
             background: #fff; 
             color: #000; 
             width: 80mm;
-            height: 110mm;
+            height: 130mm;
             box-sizing: border-box;
             overflow: hidden;
         }
-        .receipt-container { width: 100%; height: 100%; }
+        .receipt-container { width: 100%; height: 110mm; }
         .receipt-header-box { border: 1px solid #000; text-align: center; padding: 5px; margin-bottom: 8px; }
         .receipt-info-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: bold; font-size: 12px;}
         .receipt-customer-box { border: 1px solid #000; border-radius: 15px; padding: 5px; text-align: right; font-weight: bold; font-size: 12px; margin: 0 5px 8px 5px; }
