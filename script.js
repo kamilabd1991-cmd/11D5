@@ -810,12 +810,13 @@ window.printReceipt = function(customerName, amount, date, notes, remainingDebt)
     let currentDate = new Date().toLocaleString('en-GB');
     
     // تم عكس الجدول بحيث الدولار على اليمين والدينار على اليسار
+    // وتم تعديل العناوين لتتناسب مع التعديل الجديد في الـ CSS
     let contentHTML = `
         <div class="receipt-container">
             <div class="receipt-header-box">
-                <h2 style="margin: 0; font-size: 18px;">مجمع كامل فون للتقسيط</h2>
-                <p style="margin: 3px 0; font-size: 13px;">اجهزة كهربائية - اثاث منزلية - موبايلات</p>
-                <p style="margin: 3px 0; font-size: 14px; font-weight: bold; direction: ltr;">0773 676 1213 &nbsp;&nbsp; 0781 800 7750</p>
+                <h2 style="margin: 0; font-size: 16px;">مجمع كامل فون للتقسيط</h2>
+                <p style="margin: 3px 0; font-size: 12px;">اجهزة كهربائية - اثاث منزلية - موبايلات</p>
+                <p style="margin: 3px 0; font-size: 13px; font-weight: bold; direction: ltr;">0773 676 1213 &nbsp;&nbsp; 0781 800 7750</p>
             </div>
             
             <div class="receipt-info-row">
@@ -864,31 +865,31 @@ window.printReceipt = function(customerName, amount, date, notes, remainingDebt)
     printWindow.document.write('<html lang="ar" dir="rtl"><head><title>طباعة وصل</title>');
     printWindow.document.write('<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">');
     printWindow.document.write('<style>');
-    // تم تكبير الخطوط في التنسيق أدناه
+    // تم ضبط الهوامش وتقليل العرض لمنع التقطيع من الحواف وتوسيط المحتوى داخل منطقة الطباعة
     printWindow.document.write(`
         @page { size: 80mm 130mm; margin: 0; }
         body { 
             font-family: 'Tajawal', sans-serif; 
-            margin: 0; 
-            padding: 10mm 5px;
+            margin: 0 auto; 
+            padding: 10mm 8mm; 
             background: #fff; 
             color: #000; 
-            width: 80mm;
+            width: 76mm; 
             height: 130mm;
             box-sizing: border-box;
             overflow: hidden;
         }
         .receipt-container { width: 100%; height: 110mm; }
-        .receipt-header-box { border: 1px solid #000; text-align: center; padding: 5px; margin-bottom: 8px; }
-        .receipt-info-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: bold; font-size: 14px;}
-        .receipt-customer-box { border: 1px solid #000; border-radius: 15px; padding: 5px; text-align: right; font-weight: bold; font-size: 14px; margin: 0 5px 8px 5px; }
-        .receipt-notes { text-align: right; font-weight: bold; margin-bottom: 8px; font-size: 14px;}
+        .receipt-header-box { border: 1px solid #000; text-align: center; padding: 4px; margin-bottom: 8px; }
+        .receipt-info-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: bold; font-size: 13px;}
+        .receipt-customer-box { border: 1px solid #000; border-radius: 12px; padding: 5px; text-align: right; font-weight: bold; font-size: 13px; margin: 0 0 8px 0; }
+        .receipt-notes { text-align: right; font-weight: bold; margin-bottom: 8px; font-size: 13px;}
         .receipt-table { width: 100%; border-collapse: collapse; text-align: center; font-weight: bold; margin-bottom: 8px;}
-        .receipt-table th { font-weight: normal; font-size: 14px; padding-bottom: 3px;}
-        .receipt-table td { border: 1px solid #000; padding: 5px; font-size: 15px;}
+        .receipt-table th { font-weight: normal; font-size: 13px; padding-bottom: 3px;}
+        .receipt-table td { border: 1px solid #000; padding: 4px; font-size: 14px;}
         .receipt-table td:first-child { width: 50%; }
         .receipt-table td:nth-child(2) { width: 50%; }
-        .receipt-footer-time { text-align: center; font-size: 12px; margin-top: 5px; direction: ltr;}
+        .receipt-footer-time { text-align: center; font-size: 11px; margin-top: 5px; direction: ltr;}
     `);
     printWindow.document.write('</style>');
     printWindow.document.write('</head><body>');
