@@ -378,3 +378,89 @@ tr:hover { background-color: rgba(255,255,255,0.1); }
         page-break-before: auto;
     }
 }
+
+/* تنسيقات الهاتف المحمول (التعديل الأخير للتبويبات) */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+    
+    /* جعل القائمة الجانبية في أسفل الشاشة للهاتف */
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        padding: 10px;
+        z-index: 1000;
+        background: rgba(30, 60, 114, 0.95);
+        box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-right: none;
+        border-bottom: none;
+        border-left: none;
+    }
+    
+    .logo {
+        display: none; /* إخفاء الشعار في الهاتف لتوفير مساحة للأزرار */
+    }
+    
+    /* تصميم الأزرار ثلاثي الأبعاد للهاتف */
+    .nav-btn {
+        flex: 1;
+        text-align: center;
+        margin: 0 5px;
+        padding: 12px 10px;
+        font-size: 1rem;
+        background-color: var(--primary);
+        color: white;
+        box-shadow: 0 5px 0 #1d4ed8;
+        border-radius: 12px;
+        border: none;
+    }
+    
+    .nav-btn:active {
+        top: 5px;
+        box-shadow: 0 0 0 #1d4ed8;
+    }
+    
+    .nav-btn.active {
+        background-color: var(--success);
+        box-shadow: 0 5px 0 #047857;
+        color: white;
+    }
+    
+    .nav-btn.active:active {
+        top: 5px;
+        box-shadow: 0 0 0 #047857;
+    }
+    
+    /* ضبط المساحات لمنع تغطية المحتوى بالشريط السفلي */
+    .main-content {
+        padding: 15px;
+        padding-bottom: 90px;
+    }
+    
+    .card {
+        padding: 15px;
+    }
+    
+    /* تحسين شكل الهيدر في الهاتف */
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .card-header div {
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .search-input {
+        width: 100%;
+    }
+}
