@@ -388,7 +388,8 @@ window.filterMaterials = function() {
     let rows = document.getElementById('materialsTableBody').getElementsByTagName('tr');
     for (let i = 0; i < rows.length; i++) {
         let name = rows[i].getElementsByTagName('td')[0].innerText.toLowerCase();
-        rows[i].style.display = name.startsWith(input) ? "" : "none";
+        // تعديل البحث ليكون في كل النص بدلاً من البداية فقط
+        rows[i].style.display = name.includes(input) ? "" : "none";
     }
 };
 
@@ -397,7 +398,8 @@ window.filterCustomers = function() {
     let rows = document.getElementById('customersTableBody').getElementsByTagName('tr');
     for (let i = 0; i < rows.length; i++) {
         let name = rows[i].getElementsByTagName('td')[0].innerText.toLowerCase();
-        rows[i].style.display = name.startsWith(input) ? "" : "none";
+        // تعديل البحث ليكون في كل النص بدلاً من البداية فقط
+        rows[i].style.display = name.includes(input) ? "" : "none";
     }
 };
 
@@ -807,12 +809,13 @@ window.printReceipt = function(customerName, amount, date, notes, remainingDebt)
     let previousDebt = Number(remainingDebt) + Number(amount);
     let currentDate = new Date().toLocaleString('en-GB');
     
+    // تم عكس الجدول بحيث الدولار على اليمين والدينار على اليسار
     let contentHTML = `
         <div class="receipt-container">
             <div class="receipt-header-box">
-                <h2 style="margin: 0; font-size: 16px;">مجمع كامل فون للتقسيط</h2>
-                <p style="margin: 3px 0; font-size: 11px;">اجهزة كهربائية - اثاث منزلية - موبايلات</p>
-                <p style="margin: 3px 0; font-size: 12px; font-weight: bold; direction: ltr;">0773 676 1213 &nbsp;&nbsp; 0781 800 7750</p>
+                <h2 style="margin: 0; font-size: 18px;">مجمع كامل فون للتقسيط</h2>
+                <p style="margin: 3px 0; font-size: 13px;">اجهزة كهربائية - اثاث منزلية - موبايلات</p>
+                <p style="margin: 3px 0; font-size: 14px; font-weight: bold; direction: ltr;">0773 676 1213 &nbsp;&nbsp; 0781 800 7750</p>
             </div>
             
             <div class="receipt-info-row">
@@ -831,22 +834,22 @@ window.printReceipt = function(customerName, amount, date, notes, remainingDebt)
             <table class="receipt-table">
                 <thead>
                     <tr>
-                        <th>دينار</th>
                         <th>دولار</th>
+                        <th>دينار</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>${Number(previousDebt).toLocaleString()}</td>
                         <td>الديون</td>
+                        <td>${Number(previousDebt).toLocaleString()}</td>
                     </tr>
                     <tr>
-                        <td>${Number(amount).toLocaleString()}</td>
                         <td>الواصل</td>
+                        <td>${Number(amount).toLocaleString()}</td>
                     </tr>
                     <tr>
-                        <td>${Number(remainingDebt).toLocaleString()}</td>
                         <td>المتبقي</td>
+                        <td>${Number(remainingDebt).toLocaleString()}</td>
                     </tr>
                 </tbody>
             </table>
@@ -861,6 +864,7 @@ window.printReceipt = function(customerName, amount, date, notes, remainingDebt)
     printWindow.document.write('<html lang="ar" dir="rtl"><head><title>طباعة وصل</title>');
     printWindow.document.write('<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">');
     printWindow.document.write('<style>');
+    // تم تكبير الخطوط في التنسيق أدناه
     printWindow.document.write(`
         @page { size: 80mm 130mm; margin: 0; }
         body { 
@@ -876,15 +880,15 @@ window.printReceipt = function(customerName, amount, date, notes, remainingDebt)
         }
         .receipt-container { width: 100%; height: 110mm; }
         .receipt-header-box { border: 1px solid #000; text-align: center; padding: 5px; margin-bottom: 8px; }
-        .receipt-info-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: bold; font-size: 12px;}
-        .receipt-customer-box { border: 1px solid #000; border-radius: 15px; padding: 5px; text-align: right; font-weight: bold; font-size: 12px; margin: 0 5px 8px 5px; }
-        .receipt-notes { text-align: right; font-weight: bold; margin-bottom: 8px; font-size: 12px;}
+        .receipt-info-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: bold; font-size: 14px;}
+        .receipt-customer-box { border: 1px solid #000; border-radius: 15px; padding: 5px; text-align: right; font-weight: bold; font-size: 14px; margin: 0 5px 8px 5px; }
+        .receipt-notes { text-align: right; font-weight: bold; margin-bottom: 8px; font-size: 14px;}
         .receipt-table { width: 100%; border-collapse: collapse; text-align: center; font-weight: bold; margin-bottom: 8px;}
-        .receipt-table th { font-weight: normal; font-size: 12px; padding-bottom: 3px;}
-        .receipt-table td { border: 1px solid #000; padding: 5px; font-size: 13px;}
+        .receipt-table th { font-weight: normal; font-size: 14px; padding-bottom: 3px;}
+        .receipt-table td { border: 1px solid #000; padding: 5px; font-size: 15px;}
         .receipt-table td:first-child { width: 50%; }
         .receipt-table td:nth-child(2) { width: 50%; }
-        .receipt-footer-time { text-align: center; font-size: 10px; margin-top: 5px; direction: ltr;}
+        .receipt-footer-time { text-align: center; font-size: 12px; margin-top: 5px; direction: ltr;}
     `);
     printWindow.document.write('</style>');
     printWindow.document.write('</head><body>');
